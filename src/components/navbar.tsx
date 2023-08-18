@@ -5,8 +5,9 @@ import React from "react";
 const Navbar = () => {
   return (
     <header className="flex items-center px-4 md:px-12 py-2 justify-between top-0 fixed w-full z-50 shadow bg-white">
-      <Link href={"/"}>
-        <Image src={"/logo.svg"} alt="logo" width={150} height={40} />
+      <Link href={"/"} className="flex items-center">
+        <Image src={"/xaridshop.png"} alt="logo" width={45} height={40} />
+        <p className="font-bold"> <span style={{color: '#128cc0'}}>E</span>n<span style={{color: "#f78d1e"}}>C</span>ash</p>
       </Link>
       <div className="flex items-center space-x-2.5 text-sm">
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
