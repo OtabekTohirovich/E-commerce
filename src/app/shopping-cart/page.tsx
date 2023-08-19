@@ -10,7 +10,9 @@ import { useEffect, useState } from "react";
 const ShoppingPage = () => {
   const [total, setTotal] = useState<number>(0);
   const [products, setProducts] = useState<ProductType[]>(
-    JSON.parse(localStorage.getItem("carts") as string) || []
+    typeof window !== 'undefined' 
+      ? JSON.parse(localStorage.getItem("carts") as string) || []
+      : []
   );
 
   const removeHandle = (id: number) => {
@@ -21,6 +23,7 @@ const ShoppingPage = () => {
     setProducts(removeData);
   };
 
+  
   const handleIncrement = (id: number) => {
     const isExistProduct = products.find((c) => c.id === id);
 
@@ -139,6 +142,8 @@ const ShoppingPage = () => {
                           type="number"
                           min={1}
                           value={product.quantity}
+                          onChange={()=>console.log('2')
+                          }
                         />
                         <span
                           onClick={() => handleIncrement(product.id)}
