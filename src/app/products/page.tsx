@@ -1,15 +1,16 @@
 import Cta from "@/components/cta";
-import Hero from "@/components/hero";
+import Feature from "@/components/feature";
 import Product from "@/components/product";
 import { ProductType } from "@/interfaces";
+import React from "react";
 
-export default async function Home() {
+const ProductsPage = async () => {
   const res = await fetch("https://fakestoreapi.com/products");
   const products: ProductType[] = await res.json();
-
   return (
     <main className="min-h-screen max-w-7xl mx-auto px-8 xl:px-0 ">
-      <Hero/>
+      <Feature />
+
       <section className="flex flex-col space-y-12">
         <h1 className="text-5xl font-bold text-center">
           E-commerce shop deals
@@ -19,8 +20,10 @@ export default async function Home() {
             <Product key={product.id} product={product} />
           ))}
         </div>
-        <Cta/>
       </section>
+      <Cta/>
     </main>
   );
-}
+};
+
+export default ProductsPage;
