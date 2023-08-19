@@ -15,9 +15,9 @@ const ShoppingPage = () => {
 
   const removeHandle = (id: number) => {
     const removeData = products.filter((c) => c.id !== id);
-    console.log(removeData);
-
-    localStorage.setItem("carts", JSON.stringify(removeData));
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("carts", JSON.stringify(removeData));
+    }
     setProducts(removeData);
   };
 
@@ -35,8 +35,9 @@ const ShoppingPage = () => {
 
         return c;
       });
-
-      localStorage.setItem("carts", JSON.stringify(updatedData));
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem("carts", JSON.stringify(updatedData));
+      }
       setProducts(updatedData);
     }
   };
@@ -45,7 +46,6 @@ const ShoppingPage = () => {
     const isExistProduct = products.find((c) => c.id === id);
 
     if (isExistProduct?.quantity === 1) {
-      console.log("hello");
       removeHandle(id);
     } else {
       const updatedData = products.map((c) => {
@@ -57,7 +57,9 @@ const ShoppingPage = () => {
         }
         return c;
       });
-      localStorage.setItem("carts", JSON.stringify(updatedData));
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem("carts", JSON.stringify(updatedData));
+      }
       setProducts(updatedData);
     }
   };
@@ -216,39 +218,39 @@ const ShoppingPage = () => {
           </div>
         </div>
       ) : (
-        <div className='flex h-[calc(100vh-80px)] items-center justify-center p-5 bg-white w-full'>
-					<div className='text-center'>
-						<div className='inline-flex rounded-full bg-yellow-100 p-4'>
-							<div className='rounded-full stroke-yellow-600 bg-yellow-200 p-4'>
-								<svg
-									className='w-16 h-16'
-									viewBox='0 0 28 28'
-									fill='none'
-									xmlns='http://www.w3.org/2000/svg'
-								>
-									<path
-										d='M14.0002 9.33337V14M14.0002 18.6667H14.0118M25.6668 14C25.6668 20.4434 20.4435 25.6667 14.0002 25.6667C7.55684 25.6667 2.3335 20.4434 2.3335 14C2.3335 7.55672 7.55684 2.33337 14.0002 2.33337C20.4435 2.33337 25.6668 7.55672 25.6668 14Z'
-										strokeWidth='2'
-										strokeLinecap='round'
-										strokeLinejoin='round'
-									></path>
-								</svg>
-							</div>
-						</div>
-						<h1 className='mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]'>
-							Shopping cart is empty
-						</h1>
-						<p className='text-slate-600 mt-5 lg:text-lg'>
-							The page you are looking for doesn`t exist or <br />
-							has been removed.
-						</p>
-						<Link href={'/products'}>
-							<button className='button bg-blue-600 mt-4 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black'>
-								Products
-							</button>
-						</Link>
-					</div>
-				</div>
+        <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 bg-white w-full">
+          <div className="text-center">
+            <div className="inline-flex rounded-full bg-yellow-100 p-4">
+              <div className="rounded-full stroke-yellow-600 bg-yellow-200 p-4">
+                <svg
+                  className="w-16 h-16"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14.0002 9.33337V14M14.0002 18.6667H14.0118M25.6668 14C25.6668 20.4434 20.4435 25.6667 14.0002 25.6667C7.55684 25.6667 2.3335 20.4434 2.3335 14C2.3335 7.55672 7.55684 2.33337 14.0002 2.33337C20.4435 2.33337 25.6668 7.55672 25.6668 14Z"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <h1 className="mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]">
+              Shopping cart is empty
+            </h1>
+            <p className="text-slate-600 mt-5 lg:text-lg">
+              The page you are looking for doesn`t exist or <br />
+              has been removed.
+            </p>
+            <Link href={"/products"}>
+              <button className="button bg-blue-600 mt-4 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black">
+                Products
+              </button>
+            </Link>
+          </div>
+        </div>
       )}
     </>
   );

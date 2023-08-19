@@ -1,13 +1,10 @@
 "use client";
 import { ProductType } from "@/interfaces";
-import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import CustumImage from "./image";
 
 const Product: FC<{ product: ProductType }> = ({ product }) => {
-  console.log(product);
-
   return (
     <Link
       href={`/product/${product.id}`}
